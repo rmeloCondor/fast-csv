@@ -10,4 +10,4 @@ benchmark
 Gruntfile.js
 History.md
 examples
-
+.nyc_output

@@ -5,3 +5,7 @@ lib-cov
 .idea
 .grunt
 atlassian-ide-plugin.xml
+benchmark/results
+.nyc_output
+built
+src
