@@ -5,7 +5,15 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "grunt jshint it"
+    "mocha": "mocha test/ --recursive",
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint lib/. test/.",
+    "eslint-fix": "eslint lib/. test/. --fix",
+    "docs": "npm run remove-docs && npm run create-docs",
+    "publish-docs": "gh-pages -d ./docs",
+    "remove-docs": "rm -rf docs/*",
+    "create-docs": "coddoc -f multi-html -d ./lib --dir ./docs",
+    "benchmark": "node ./benchmark"
   },
   "repository": {
     "type": "git",
@@ -23,20 +31,22 @@
   "author": "Doug Martin",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-exec": "^0.4.5",
-    "grunt-gh-pages": "^2.0.0",
-    "grunt-it": "^1.0.0",
-    "it": "^1.0.1"
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "gh-pages": "^2.0.1",
+    "mocha": "^6.1.4"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "is-extended": "0.0.10",
-    "object-extended": "0.0.7",
+    "csv": "^5.1.1",
+    "duplexify": "^4.0.0",
     "extended": "0.0.6",
+    "is-extended": "0.0.10",
+    "lodash": "^4.17.11",
+    "object-extended": "0.0.7",
     "string-extended": "0.0.8"
   }
 }
