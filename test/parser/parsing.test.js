@@ -786,7 +786,7 @@ describe('fast-csv parsing', () => {
                 .fromPath(path.resolve(__dirname, '../assets/test4.csv'), { headers: true })
                 .validate((data, validateNext) => validateNext(new Error('Validation ERROR!!!!')))
                 .on('data', data => actual.push(data))
-                .on('data-invalid', data => invalid.push(data))
+                .on('data-invalid', data => invalid.push(data));
             listenForError(stream, 'Validation ERROR!!!!', next);
         });
 
@@ -804,7 +804,7 @@ describe('fast-csv parsing', () => {
                     }
                 })
                 .on('data', data => actual.push(data))
-                .on('data-invalid', data => invalid.push(data))
+                .on('data-invalid', data => invalid.push(data));
             listenForError(stream, 'Validation ERROR!!!!', next);
         });
 
@@ -890,7 +890,7 @@ describe('fast-csv parsing', () => {
                 }))
                 .on('data', (data) => {
                     actual[index] = data;
-                })
+                });
             listenForError(stream, 'transformation ERROR!!!!', next);
         });
 
@@ -921,9 +921,8 @@ describe('fast-csv parsing', () => {
                     }
                 })
                 .on('data', data => actual.push(data))
-                .on('data-invalid', data => invalid.push(data))
+                .on('data-invalid', data => invalid.push(data));
             listenForError(stream, 'transformation ERROR!!!!', next);
-
         });
 
         it('should propagate thrown errors at the beginning', (next) => {
@@ -935,7 +934,7 @@ describe('fast-csv parsing', () => {
                     throw new Error('transformation ERROR!!!!');
                 })
                 .on('data', data => actual.push(data))
-                .on('data-invalid', data => invalid.push(data))
+                .on('data-invalid', data => invalid.push(data));
             listenForError(stream, 'transformation ERROR!!!!', next);
         });
     });
@@ -953,8 +952,7 @@ describe('fast-csv parsing', () => {
     });
 
     it('should emit an error for invalid rows', (next) => {
-        const actual = []; const
-            parseErrorCalled = false;
+        const actual = [];
         const stream = csv
             .fromPath(path.resolve(__dirname, '../assets/test6.csv'), { headers: true })
             .on('data', data => actual.push(data));
